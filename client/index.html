@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Slide Share</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            max-width: 100%;
+        }
+
+        .home {
+            width: 100%;
+        }
+        .fade-enter-active, .fade-leave-active {
+            transition: all 0.8s ease;
+            overflow: hidden;
+            visibility: visible;
+            opacity: 1;
+            position: absolute;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+            visibility: hidden;
+        }     
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="home">
+            <div>
+                <p>
+                  <a @click.prevent="prev" href='#'>Previous</a> || <a @click.prevent="next" href='#'>Next</a>
+                </p>
+                
+                <transition-group name='fade' tag='div'>
+                  <div
+                    v-for="number in [currentNumber]"
+                    :key='number'
+                    >
+                    <img
+                        :src="currentImage"
+
+                        />
+                  </div>
+              </transition-group>
+            </div>
+        </div>
+    </div>
+    <script src="http://localhost:4000/socket.io/socket.io.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
